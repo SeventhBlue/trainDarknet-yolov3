@@ -1,0 +1,5 @@
+classes= 4
+train  = /home/hw/vscodeProject/darknet/myData/train.txt
+valid  = /home/hw/vscodeProject/darknet/myData/val.txt
+names = /home/hw/vscodeProject/darknet/myData/cfg/myData.names
+backup = /home/hw/vscodeProject/darknet/myData/weights

@@ -1,0 +1,24 @@
+一、编译：
+	[以/darknet为根目录]
+	1.1 根据电脑配置设置Makefile：这里默认使用gpu，cudnn，不使用opencv
+	1.2 make
+
+二、测试：
+	[以/darknet为根目录]
+	2.1 测试命令：./darknet detect myData/cfg/myYolov3.cfg myData/weights/my_yolov3_30000.weights myData/JPEGImages/01_000038.png
+	2.2 测试结果将保存在./results/中
+	2.3 如果想使用voc或者coco真实标签：
+		./darknet detector test cfg/coco.data cfg/yolov3.cfg yolov3.weights data/dog.jpg
+	    或者修改examples/darkent.c中的447行，使用如下命令：
+		./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
+
+三、训练：
+	[以/myData为运行根目录]
+	3.1 voc数据格式：xml文件放到myData/Annotations，图片放到myData/JPEGImages
+	3.2 修改cfg中的：myData.data主要是路径和种类数
+			myData.names根据自己的类别填写，顺序需要和dataPrecess.py一样
+			myYolov3.cfg根据自己的需求需要更改，搜索yolo，有三个地方：classes = n，filters=3 × (5 + n)
+			根据自己电脑的性能修改batch和subdivisions值，一般来讲电脑性能越好batch值越大，subdivisions值越小，最好是2的整数指数值
+	3.3 根据里面的注释运行dataPrecess.py，将voc数据转成darknet可以训练的格式；
+	[以/darknet为根目录]
+	3.4 训练执行命令：./darknet detector train myData/cfg/myData.data myData/cfg/myYolov3.cfg myData/weights/preWeights/darknet53.conv.74
