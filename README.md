@@ -46,6 +46,8 @@ For questions or issues please use the [Google Group](https://groups.google.com/
 
 	[以/myData为运行根目录]
 	
+	注意：1.在myData/目录下，需要确保myData/Annotations，myData/ImageSets/Main，myData/JPEGImages，myData/weights文件夹存在
+	
 	3.1 voc数据格式：xml文件放到myData/Annotations，图片放到myData/JPEGImages（文件夹不存在自己新建就行）
 	
 	3.2 修改cfg中的：myData.data主要是路径和种类数
