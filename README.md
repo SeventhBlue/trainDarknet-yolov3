@@ -42,7 +42,7 @@ For questions or issues please use the [Google Group](https://groups.google.com/
 		
 		./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
 
-# 三、训练：
+# 三、训练(请看更新部分)：
 
 	[以/myData为运行根目录]
 	
@@ -70,19 +70,19 @@ For questions or issues please use the [Google Group](https://groups.google.com/
 	
 	提取码：vgib
 	
-# 五、更新
+# 五、训练(更新20201102):
 
-	[添加了修改yolo.cfg参数的函数，使用更加方便]
-
-	3.1 voc数据格式：xml文件放到myData/Annotations，图片放到myData/JPEGImages（文件夹不存在自己新建就行）
+	注意：1.在myData/目录下，需要确保myData/Annotations，myData/ImageSets/Main，myData/JPEGImages，myData/weights文件夹存在，如果不存在那么新建该文件夹；同时删除无关文件，文件名上已经标明
 	
+	      2.根据自己电脑的性能修改batch和subdivisions值，一般来讲电脑性能越好batch值越大，subdivisions值越小，最好是2的整数指数值
+	
+	3.1 voc数据格式：xml文件放到myData/Annotations，图片放到myData/JPEGImages
+
 	[以/myData为运行根目录]
 	
-	3.2 myData.names根据自己的类别填写，要写全
-	
-	3.3 执行命令：python dataPrecess.py
+	3.2 执行命令：python dataPrecess.py
 	
 	[以/trainDarknet-yolov3为根目录]
 	
-	3.4 执行命令：./darknet detector train myData/cfg/myData.data myData/cfg/myYolov3.cfg myData/weights/preWeights/darknet53.conv.74
+	3.3 执行命令：./darknet detector train myData/cfg/myData.data myData/cfg/myYolov3.cfg myData/weights/preWeights/darknet53.conv.74
 	

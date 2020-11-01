@@ -168,8 +168,9 @@ def convert_annotation(xmlPath, classes, txtSavePath):
         try:
             cls_id = classes.index(cls)
         except ValueError:
-            print("The category does not exist in the myData.names file!")
-            exit()
+            classes.append(cls)
+            print("Add new label:{}".format(cls))
+            cls_id = classes.index(cls)
         xmlbox = obj.find('bndbox')
         b = (float(xmlbox.find('xmin').text), float(xmlbox.find('xmax').text), float(xmlbox.find('ymin').text),
              float(xmlbox.find('ymax').text))
@@ -206,6 +207,16 @@ def darknetTrainFormatData(xmlPath, imageSets, savePath, classes, sets):
         for line in setData:
             setDataFile.write(line+"\n")
         setDataFile.close()
+
+    currPath = os.getcwd()
+    namesPath = os.path.join(currPath, "cfg", "myData.names")
+    namesFile = open(namesPath, mode='w')
+    for ind, Line in enumerate(classes):
+        if ind == 0:
+            namesFile.write(Line)
+        else:
+            namesFile.write('\n' + Line)
+    namesFile.close()
 
 
 def checkLabel(imagePath, labelPath):
@@ -325,7 +336,7 @@ saveChangePath = "./Annotations"                 # xml修改后保存的路径
 imageSets = "./ImageSets/Main"                   # 数据划分后保存的路径
 jpegImages = "./JPEGImages"                      # 真实图片存放的路径
 darknetFormatPath = "./labels"                   # 改成darknet可以训练数据后保存路径
-classes = readLineTXT("./cfg/myData.names")      # 真实标签, 不能有空行
+classes = []                                     # readLineTXT("./cfg/myData.names")
 # 数据文件名，最好不要更改；如果更改，那么fractionalSet和configPara相应的也要更改
 setNames = ["test.txt", "val.txt", "train.txt", "trainval.txt"]
 
