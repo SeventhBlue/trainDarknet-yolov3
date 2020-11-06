@@ -287,7 +287,7 @@ def configPara():
     currPath = os.getcwd()
     dataPath = os.path.join(currPath, "cfg", "myData.data")
     namesPath = os.path.join(currPath, "cfg", "myData.names")
-    cfgPath = os.path.join(currPath, "cfg", "myYolov4.cfg")
+    cfgPath = os.path.join(currPath, "cfg", "myYolov3.cfg")
 
     # 读取myData.names
     namesList = readLineTXT(namesPath)
