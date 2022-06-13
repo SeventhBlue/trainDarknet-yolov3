@@ -9,6 +9,7 @@ from xml.dom.minidom import parse
 import xml.etree.ElementTree as ET
 import random
 import cv2
+import numpy as np
 
 def changeXMLImagePath(xmlPath, savePath):
     """
@@ -329,6 +330,27 @@ def configPara():
         else:
             cfgFile.write('\n' + Line)
     cfgFile.close()
+    
+  
+def count_label(txt_path, label_path):
+    """
+    统计训练数据每个标签的个数
+    :param txt_path:
+    :param label_path:
+    :return:
+    """
+    labels_max = np.zeros((100), dtype=np.int16)  # label最大数为100
+    txt_list = os.listdir(txt_path)
+    for txt_name in txt_list:
+        txt_name_path = os.path.join(txt_path, txt_name)
+        lines = readLineTXT(txt_name_path)
+        for line in lines:
+            label = line.split(' ')[0]
+            labels_max[int(label)] += 1
+
+    label_list = readLineTXT(label_path)
+    for i, label in enumerate(label_list):
+        print("{}:{}".format(label, labels_max[i]))
 
 
 annotationsPath = "./Annotations"                # xml标注数据的路径
