@@ -374,4 +374,6 @@ if __name__ == "__main__":
     darknetTrainFormatData(annotationsPath, imageSets, darknetFormatPath, classes, setNames)
 
     configPara()
+    
+    count_label("./labels", "./cfg/myData.names")
 
